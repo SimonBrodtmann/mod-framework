@@ -1,3 +1,3 @@
 MF.Buildings = {}
 
-require("code/graphics")
+require("code/LumberMill")
