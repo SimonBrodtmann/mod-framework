@@ -72,7 +72,28 @@ local LumberMillEntityBuilder = EntityBuilder:new({
                                 }
                             }
                         },
-
+                        {
+                            priority = "high",
+                            draw_as_light = true,
+                            width = 525,
+                            height = 557,
+                            frame_count = 80,
+                            lines_per_file = 8,
+                            shift = { 0, 0 },
+                            scale = 0.5,
+                            stripes = {
+                                {
+                                    filename = img("lumber-mill-light-1.png"),
+                                    width_in_frames = 8,
+                                    height_in_frames = 8
+                                },
+                                {
+                                    filename = img("lumber-mill-light-2.png"),
+                                    width_in_frames = 8,
+                                    height_in_frames = 2
+                                }
+                            }
+                        }
                     }
                 }
             },
