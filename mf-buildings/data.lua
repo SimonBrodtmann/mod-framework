@@ -1,3 +1,1 @@
-MF.Buildings = {}
-
-require("code/LumberMill")
+MF.buildings = "__mf-buildings__/code/"

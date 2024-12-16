@@ -1,5 +1,4 @@
 MF = {
-    prefix = "mf"
+    prefix = "mf",
+    lib = "__mf-core__/lib/"
 }
-
-require("code/graphics")
