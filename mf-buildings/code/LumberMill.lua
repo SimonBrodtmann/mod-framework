@@ -1,3 +1,4 @@
+local meld = require("meld")
 local hit_effects = require("__base__.prototypes.entity.hit-effects")
 local item_sounds = require("__base__.prototypes.item_sounds")
 local ImageFactory = require(MF.lib .. "ImageFactory")
@@ -110,7 +111,7 @@ local LumberMillEntityBuilder = EntityBuilder:new({
         end
 
         if (overrides) then
-            result = util.merge({ result, overrides })
+            result = meld(result, overrides)
         end
 
         return result
@@ -135,7 +136,7 @@ local LumberMillItemBuilder = ItemBuilder:new({
         }
 
         if (overrides) then
-            result = util.merge({ result, overrides })
+            result = meld(result, overrides )
         end
 
         return result
@@ -155,7 +156,7 @@ local LumberMillRecipeBuilder = RecipeBuilder:new({
         }
 
         if (overrides) then
-            result = util.merge({ result, overrides })
+            result = meld(result, overrides)
         end
 
         return result
@@ -177,7 +178,7 @@ local LumberMillTechnologyBuilder = TechnologyBuilder:new({
         }
 
         if (overrides) then
-            result = util.merge({ result, overrides })
+            result = meld(result, overrides)
         end
 
         return result
