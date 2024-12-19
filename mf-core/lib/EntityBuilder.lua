@@ -1,3 +1,7 @@
+--- Generic entity builder class.
+--- @class EntityBuilder : Builder
+
+local meld = require("meld")
 local Builder = require("Builder")
 
 local DEFAULT_ELECTRIC_POLLUTION = nil
@@ -18,15 +22,21 @@ local EntityBuilder = Builder:new({
     _allowProductivity = true
 })
 
+--- Creates a default electric energy source.
+--- @param overrides table Overrides that should be applied to the energy source
+--- @return EntityBuilder
 function EntityBuilder:electricEnergySource(overrides)
     if (overrides) then
-        self._energySource = util.merge({ createDefaultEnergySource(), overrides })
+        self._energySource = meld(createDefaultEnergySource(), overrides)
     else
         self._energySource = createDefaultEnergySource()
     end
     return self
 end
 
+--- Creates a default burner energy source.
+--- @param overrides table Overrides that should be applied to the energy source
+--- @return EntityBuilder
 function EntityBuilder:burnerEnergySource(overrides)
     local defaultBurnerEnergySource = {
         type = "burner",
@@ -43,11 +53,17 @@ function EntityBuilder:burnerEnergySource(overrides)
     return self
 end
 
+--- Sets the base productivity of the entity.
+--- @param productivity number The base productivity of the entity as a fraction (0.5 means 50% productivity bonus)
+--- @return EntityBuilder
 function EntityBuilder:baseProductivity(productivity)
     self._baseProductivity = productivity
     return self
 end
 
+--- Allows productivity modules to be installed in the entity.
+--- @param allowProductivity boolean Whether productivity modules should be allowed
+--- @return EntityBuilder
 function EntityBuilder:allowProductivity(allowProductivity)
     self._allowProductivity = allowProductivity
     return self

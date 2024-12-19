@@ -9,6 +9,8 @@ local TechnologyBuilder = require(MF.lib .. "TechnologyBuilder")
 
 local img = ImageFactory("buildings-graphics", "1", "/lumber-mill/")
 
+--- Lumber Mill entity builder class
+--- @class LumberMillEntityBuilder : EntityBuilder
 local LumberMillEntityBuilder = EntityBuilder:new({
     build = function(self, overrides)
         local result = {
@@ -118,6 +120,8 @@ local LumberMillEntityBuilder = EntityBuilder:new({
     end
 })
 
+--- Lumber Mill item builder class
+--- @class LumberMillItemBuilder : ItemBuilder
 local LumberMillItemBuilder = ItemBuilder:new({
     build = function(self, overrides)
         local result = {
@@ -143,6 +147,8 @@ local LumberMillItemBuilder = ItemBuilder:new({
     end
 })
 
+--- Lumber Mill recipe builder class
+--- @class LumberMillRecipeBuilder : RecipeBuilder
 local LumberMillRecipeBuilder = RecipeBuilder:new({
     build = function(self, overrides)
         local result = {
@@ -152,7 +158,8 @@ local LumberMillRecipeBuilder = RecipeBuilder:new({
             enabled = false,
             ingredients = self._ingredients,
             energy_required = 60,
-            results = { { type = "item", name = self.name, amount = 1 } }
+            results = { { type = "item", name = self.name, amount = 1 } },
+            surface_conditions = self._surfaceConditions
         }
 
         if (overrides) then
@@ -163,6 +170,8 @@ local LumberMillRecipeBuilder = RecipeBuilder:new({
     end
 })
 
+--- Lumber Mill technology builder class
+--- @class LumberMillTechnologyBuilder : TechnologyBuilder
 local LumberMillTechnologyBuilder = TechnologyBuilder:new({
     _icon = img("lumber-mill-technology.png"),
 
@@ -185,6 +194,9 @@ local LumberMillTechnologyBuilder = TechnologyBuilder:new({
     end
 })
 
+--- Lumber Mill factory function
+--- @param name string The technical name of this lumber mill instance (default: "lumber-mill")
+--- @return table A table containing the builders for entity, item, recipe, and technology
 return function(name)
     name = name or "lumber-mill"
 

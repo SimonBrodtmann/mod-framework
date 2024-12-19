@@ -51,6 +51,8 @@ local function createFastAnimation(color)
     }, belt_reader_gfx)
 end
 
+--- Belt entity builder class
+--- @class BeltEntityBuilder : Builder
 local BeltEntityBuilder = Builder:new({
     _nextTier = nil,
     _previousTier = nil,
@@ -58,31 +60,52 @@ local BeltEntityBuilder = Builder:new({
     _undergroundDistance = 5,
     _animationSpeedCoefficient = 1,
 
+    --- Sets the items per second that this belt can transport.
+    --- The items per second are converted to the speed value that the game expects.
+    --- @param itemsPerSecond number The amount of items per second.
+    --- @return BeltEntityBuilder
     itemsPerSecond = function(self, itemsPerSecond)
         self._speed = itemsPerSecond / 480
         return self
     end,
 
+    --- Sets the next tier of this belt. This is supposed to be the prefix of the technical name (e.g. "fast" for "fast-transport-belt" and "" for "transport-belt").
+    --- When the code is generated, `next_upgrade` is set to the next tier for all three entities.
+    --- @param nextTier string The prefix of the technical name of the next tier ("" for yellow "transport-belt")
+    --- @return BeltEntityBuilder
     nextTier = function(self, nextTier)
         self._nextTier = nextTier
         return self
     end,
 
+    --- Sets the previous tier of this belt. This is supposed to be the prefix of the technical name (e.g. "fast" for "fast-transport-belt" and "" for "transport-belt").
+    --- When the code is generated, `next_upgrade` is set to this tier for all three entities defined by `previousTier`.
+    --- @param previousTier string The prefix of the technical name of the previous tier ("" for yellow "transport-belt")
+    --- @return BeltEntityBuilder
     previousTier = function(self, previousTier)
         self._previousTier = previousTier
         return self
     end,
 
+    --- Sets the distance that the underground belt can span.
+    --- @param distance number The distance in tiles that the underground belt can span (vanilla uses 5, 7, 9 and 11)
+    --- @return BeltEntityBuilder
     undergroundDistance = function(self, distance)
         self._undergroundDistance = distance
         return self
     end,
 
+    --- Sets `animation_speed_coefficient` for the belt entities. This can be used when it looks like the belt is moving backwards or not at all.
+    --- @param multiplier number The multiplier for the default `animation_speed_coefficient` value of 32 (dfault is 1)
+    --- @return BeltEntityBuilder
     animationSpeedMultiplier = function(self, multiplier)
         self._animationSpeedCoefficient = 32 * multiplier
         return self
     end,
 
+    --- Builds the belt entities. Different to the default build function, it returns a table with all the generated entities.
+    --- Used keys: `transportBelt`, `beltRemnants`, `undergroundBelt`, `undergroundBeltRemnants`, `splitter`, `splitterRemnants`.
+    --- @param overrides table Additional or overriding properties for the entities (don't forget to include a top level table with the entities)
     build = function(self, overrides)
         local transportBeltName = self.name .. "-transport-belt"
         local undergroundBeltName = self.name .. "-underground-belt"
@@ -218,7 +241,8 @@ local BeltEntityBuilder = Builder:new({
                     },
                     back_patch = {
                         sheet = {
-                            filename = "__base__/graphics/entity/underground-belt/underground-belt-structure-back-patch.png",
+                            filename =
+                            "__base__/graphics/entity/underground-belt/underground-belt-structure-back-patch.png",
                             priority = "extra-high",
                             width = 192,
                             height = 192,
@@ -227,7 +251,8 @@ local BeltEntityBuilder = Builder:new({
                     },
                     front_patch = {
                         sheet = {
-                            filename = "__base__/graphics/entity/underground-belt/underground-belt-structure-front-patch.png",
+                            filename =
+                            "__base__/graphics/entity/underground-belt/underground-belt-structure-front-patch.png",
                             priority = "extra-high",
                             width = 192,
                             height = 192,
@@ -419,8 +444,10 @@ local BeltEntityBuilder = Builder:new({
                 data.raw["underground-belt"]["underground-belt"].next_upgrade = self.name .. "-underground-belt"
                 data.raw["splitter"]["splitter"].next_upgrade = self.name .. "-splitter"
             else
-                data.raw["transport-belt"][self._previousTier .. "-transport-belt"].next_upgrade = self.name .. "-transport-belt"
-                data.raw["underground-belt"][self._previousTier .. "-underground-belt"].next_upgrade = self.name .. "-underground-belt"
+                data.raw["transport-belt"][self._previousTier .. "-transport-belt"].next_upgrade = self.name ..
+                    "-transport-belt"
+                data.raw["underground-belt"][self._previousTier .. "-underground-belt"].next_upgrade = self.name ..
+                    "-underground-belt"
                 data.raw["splitter"][self._previousTier .. "-splitter"].next_upgrade = self.name .. "-splitter"
             end
         end
@@ -441,6 +468,8 @@ local BeltEntityBuilder = Builder:new({
     end
 })
 
+--- Belt item builder class
+--- @class BeltItemBuilder : ItemBuilder
 local BeltItemBuilder = ItemBuilder:new({
     _weight = {
         transportBelt = 20 * kg,
@@ -448,11 +477,20 @@ local BeltItemBuilder = ItemBuilder:new({
         splitter = 40 * kg
     },
 
-    itemsPerRocket = function(self, type, count)
-        self._weight[type] = (1000 / count) * kg
+    --- Sets the weight of the item calculated from given count per rocket.
+    --- This is different from the base function as it handles separate values for each entity.
+    --- See the `build` function for the used keys.
+    --- @param item string The item to set the weight for
+    --- @param count number The amount of items that fit into a rocket
+    --- @return ItemBuilder
+    itemsPerRocket = function(self, item, count)
+        self._weight[item] = (1000 / count) * kg
         return self
     end,
 
+    --- Builds the belt items. Different to the default build function, it returns a table with all the generated items.
+    --- Used keys: `transportBelt`, `undergroundBelt`, `splitter`.
+    --- @param overrides table Additional or overriding properties for the items (don't forget to include a top level table with the items)
     build = function(self, overrides)
         local transportBeltName = self.name .. "-transport-belt"
         local undergroundBeltName = self.name .. "-underground-belt"
@@ -518,11 +556,160 @@ local BeltItemBuilder = ItemBuilder:new({
     end
 })
 
+--- Belt recipe builder class
+--- @class BeltRecipeBuilder : RecipeBuilder
+local BeltRecipeBuilder = RecipeBuilder:new({
+    _ingredients = {
+        transportBelt = {},
+        undergroundBelt = {},
+        splitter = {}
+    },
+    _enabled = false,
+    _beltAmount = 1,
+
+    --- Sets the ingredients of a recipe.
+    --- This is different from the base function as it handles separate values for each recipe.
+    --- See the `build` function for the used keys.
+    --- @param recipe string The recipe to set the weight for
+    --- @param ingredients table The ingredients for the recipe
+    --- @return RecipeBuilder
+    ingredients = function(self, recipe, ingredients)
+        self._ingredients[recipe] = ingredients
+        return self
+    end,
+
+    --- Enables the recipes. Per default they are disabled and to be unlocked by a technology.
+    --- If you use this, you probably don't want to use the TechnologyBuilder.
+    --- @return RecipeBuilder
+    enabled = function(self)
+        self._enabled = true
+        return self
+    end,
+
+    --- Defines the amount of belts that are produced by the belt recipe.
+    --- Since the vanilla recipe for the yelllow belt produces 2 belts and other tier recipes produce just 1 belt, this could be useful if you don't want the default of 1.
+    --- @param amount number The amount of belts that are produced by the recipe (default: 1)
+    --- @return RecipeBuilder
+    beltAmount = function(self, amount)
+        self._beltAmount = amount
+        return self
+    end,
+
+    --- Builds the belt recipes. Different to the default build function, it returns a table with all the generated recipes.
+    --- Used keys: `transportBelt`, `undergroundBelt`, `splitter`.
+    --- @param overrides table Additional or overriding properties for the recipes (don't forget to include a top level table with the recipes)
+    build = function(self, overrides)
+        local transportBeltName = self.name .. "-transport-belt"
+        local undergroundBeltName = self.name .. "-underground-belt"
+        local splitterName = self.name .. "-splitter"
+        local result = {
+            transportBelt = {
+                type = "recipe",
+                name = transportBeltName,
+                enabled = self._enabled,
+                energy_required = 0.5,
+                results = { { type = "item", name = transportBeltName, amount = self._beltAmount } },
+                ingredients = self._ingredients["transportBelt"],
+                surface_conditions = self._surfaceConditions
+            },
+            undergroundBelt = {
+                type = "recipe",
+                name = undergroundBeltName,
+                enabled = self._enabled,
+                energy_required = 1,
+                ingredients = self._ingredients["undergroundBelt"],
+                results = { { type = "item", name = undergroundBeltName, amount = 2 } },
+                surface_conditions = self._surfaceConditions
+            },
+            splitter = {
+                type = "recipe",
+                name = splitterName,
+                enabled = self._enabled,
+                energy_required = 1,
+                ingredients = self._ingredients["splitter"],
+                results = { { type = "item", name = splitterName, amount = 1 } },
+                surface_conditions = self._surfaceConditions
+            }
+        }
+
+        if (overrides) then
+            result = meld(result, overrides)
+        end
+
+        return result
+    end,
+
+    apply = function(self, overrides)
+        local result = self:build(overrides)
+        for _, entry in pairs(result) do
+            data:extend({ entry })
+        end
+        return result
+    end
+})
+
+--- Belt technology builder class
+--- @class BeltTechnologyBuilder : TechnologyBuilder
+local BeltTechnologyBuilder = TechnologyBuilder:new({
+    new = function(self, o)
+        o = o or {}
+        if o.color and o._effects == nil then
+            o._icon = img(o.color .. "/logistics-technology.png")
+        end
+        if o.name and o._effects == nil then
+            o._effects = {
+                {
+                    type = "unlock-recipe",
+                    recipe = o.name .. "-transport-belt"
+                },
+                {
+                    type = "unlock-recipe",
+                    recipe = o.name .. "-underground-belt"
+                },
+                {
+                    type = "unlock-recipe",
+                    recipe = o.name .. "-splitter"
+                }
+            }
+        end
+        setmetatable(o, self)
+        self.__index = self
+        return o
+    end,
+
+    --- Builds one technology that unlocks all the recipes.
+    --- @param overrides table Additional or overriding properties for the technology
+    build = function(self, overrides)
+        local result = {
+            type = "technology",
+            name = self.name .. "-logistics",
+            icon = self._icon,
+            icon_size = self._iconSize,
+            effects = self._effects,
+            prerequisites = self._prerequisites,
+            unit = self._unit
+        }
+
+        if (overrides) then
+            result = meld(result, overrides)
+        end
+
+        return result
+    end
+})
+
+--- Belt factory function.
+--- The color maps to a folder name in the graphics folder.
+--- The speed maps to a speed category that vanilla provides.
+--- "slow" uses recolored graphics from yellow belts. "medium" uses red/blue belts and "fast" uses green belts.
+--- @param name string The technical name prefix of this belt instance (e.g. "fast" results into "fast-transport-belt")
+--- @param color string The color of this belt instance (available color graphics: "black", "brown", "purple", "white")
+--- @param speed string The speed category of the belt graphics to be used (available speeds: "slow", "medium", "fast")
 return function(name, color, speed)
     return {
         EntityBuilder = BeltEntityBuilder:new({ name = name, color = color, speed = speed }),
         ItemBuilder = BeltItemBuilder:new({ name = name, color = color }),
-        --RecipeBuilder = BeltRecipeBuilder:new({ name = name, color = color }),
-        --TechnologyBuilder = BeltTechnologyBuilder:new({ name = name, color = color })
+        RecipeBuilder = BeltRecipeBuilder:new({ name = name }),
+        TechnologyBuilder = BeltTechnologyBuilder:new({ name = name, color = color })
     }
 end
