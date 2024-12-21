@@ -1,5 +1,3 @@
-# Mod Framework
-
 This framework provides barebone pieces for Factorio with an easy to use API. Builders, customizing options and the
 ability to apply your own adjustments easily, enable you to rapidly develop cool mods without spending too much time
 finding the right graphics and the code for them for your ideas.
@@ -7,10 +5,10 @@ finding the right graphics and the code for them for your ideas.
 ## Usage
 
 As a modder, you don't need to use code from `mf-core` or one of the graphics mods directly. You will mainly be
-interested
-in the mods that actually provide entities.
+interested in the mods that actually provide entities.
 
-All files are well-documented with LDoc comments. In doubt, look at them before you start reading the code.
+However the core code will help you understand what functionality is available. All files are well-documented with LDoc
+comments. In doubt, look at them before you start reading the actual code.
 
 All mods use the Builder classes defined in `mf-core` and provide a factory function to create all the builder instances
 needed to add everything related to one specific entity. The builders generate regular prototype data that can directly
@@ -22,7 +20,7 @@ Many functions accept a table containing overrides. That table will be applied t
 additional changes in the end.
 
 The builders have some convenience function to make things easier, but they cannot cover all use cases. In the end you
-will often apply some of the properties using the overrides.
+will often apply some of the needed properties using the overrides.
 
 The following three examples all generate the same code for the lumber mill. They show you the different ways how this
 framework can be used:

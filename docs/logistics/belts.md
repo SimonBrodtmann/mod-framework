@@ -1,10 +1,5 @@
 <details class="mf-entity-entry">
-<summary>
-
-## ![Lumber mill icon](belts-icon.png "Logistics icon") Belts
-
-<img src="/chevron-down-solid.svg" class="mf-entity-entry__toggle" alt="Toggle summary"/>
-</summary>
+<mf-entity-summary icon="logistics/belts-icon.png">Belts</mf-entity-summary>
 
 ![Preview](belts-icon.png)
 
