@@ -1,7 +1,12 @@
 <details class="mf-entity-entry">
 <mf-entity-summary icon="logistics/belts-icon.png">Belts</mf-entity-summary>
 
-![Preview](belts-icon.png)
+<div class="mf-previews">
+    <mf-previews-entry image="logistics/belts-white-preview.png">white</mf-previews-entry>
+    <mf-previews-entry image="logistics/belts-black-preview.png">black</mf-previews-entry>
+    <mf-previews-entry image="logistics/belts-purple-preview.png">purple</mf-previews-entry>
+    <mf-previews-entry image="logistics/belts-brown-preview.png">brown</mf-previews-entry>
+</div>
 
 <table>
     <tr>

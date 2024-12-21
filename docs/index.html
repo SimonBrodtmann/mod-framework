@@ -18,58 +18,6 @@
                     color: #9baeb5;
                 }
 
-                details.mf-entity-entry {
-                    padding: 1rem;
-                    border: 1px solid #c8c8c8;
-
-                    &:hover {
-                        summary {
-                            background-color: #686868;
-                        }
-                    }
-
-                    &[open] {
-                        > :last-child:not(summary) {
-                            margin-bottom: 0;
-                        }
-
-                        summary {
-                            margin-bottom: 1rem;
-                            background-color: #686868;
-                        }
-
-                        .mf-entity-entry__toggle {
-                            transform: rotate(-180deg);
-                        }
-                    }
-
-                    summary {
-                        cursor: pointer;
-                        display: flex;
-                        align-items: center;
-                        margin: -1rem;
-                        padding: 1rem;
-
-                        h2 {
-                            flex: 1;
-                            display: flex;
-                            margin: 0;
-                            align-items: center;
-                            gap: 1rem;
-                            color: #c8c8c8;
-
-                            img {
-                                height: 3rem;
-                            }
-                        }
-                    }
-
-                    .mf-entity-entry__toggle {
-                        height: 1rem;
-                        transition-duration: 250ms;
-                    }
-                }
-
                 table {
                     tr {
                         border: none;
@@ -112,6 +60,82 @@
                         }
                     }
                 }
+
+                details.mf-entity-entry {
+                    padding: 1rem;
+                    border: 1px solid #c8c8c8;
+
+                    &:hover {
+                        summary {
+                            background-color: #686868;
+                        }
+                    }
+
+                    &[open] {
+                        > :last-child:not(summary) {
+                            margin-bottom: 0;
+                        }
+
+                        summary {
+                            margin-bottom: 1rem;
+                            background-color: #686868;
+                        }
+
+                        summary + * {
+                            margin-top: 0;
+                        }
+
+                        .mf-entity-entry__toggle {
+                            transform: rotate(-180deg);
+                        }
+                    }
+
+                    summary {
+                        cursor: pointer;
+                        display: flex;
+                        align-items: center;
+                        margin: -1rem;
+                        padding: 1rem;
+
+                        h2 {
+                            flex: 1;
+                            display: flex;
+                            margin: 0;
+                            align-items: center;
+                            gap: 1rem;
+                            color: #c8c8c8;
+
+                            img {
+                                height: 3rem;
+                            }
+                        }
+                    }
+
+                    .mf-entity-entry__toggle {
+                        height: 1rem;
+                        transition-duration: 250ms;
+                    }
+                }
+
+                .mf-previews {
+                    display: flex;
+                    gap: 2rem;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    margin: 1.2rem 0;
+
+                    .mf-previews-entry {
+                        flex: 0 0 auto;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.5rem;
+
+                        label {
+                            font-size: 0.875rem;
+                            font-weight: bold;
+                        }
+                    }
+                }
             }
         </style>
     </head>
@@ -129,6 +153,7 @@
             }
         </script>
         <script src="components/EntitySummary.js"></script>
+        <script src="components/PreviewsEntry.js"></script>
         <script src="//cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
         <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
         <script src="https://unpkg.com/docsify-copy-code@2"></script>
