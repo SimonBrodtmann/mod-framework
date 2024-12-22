@@ -9,3 +9,10 @@ framework.
 
 Please give credits to the authors of the graphics you are using. The documentation includes the information who created
 it and which license it has.
+
+## Running the dev environment locally
+See https://docsify.js.org/#/quickstart?id=quick-start
+
+```
+docsify serve docs
+```
