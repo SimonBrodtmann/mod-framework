@@ -137,6 +137,23 @@ local LumberMillEntityBuilder = EntityBuilder:new({
             },
             open_sound = { filename = "__base__/sound/open-close/train-stop-open.ogg", volume = 0.6 },
             close_sound = { filename = "__base__/sound/open-close/train-stop-close.ogg", volume = 0.5 },
+            working_sound = {
+                fade_in_ticks = 4,
+                fade_out_ticks = 20,
+                audible_distance_modifier = 0.6,
+                max_sounds_per_type = 2,
+                sound = { filename = "__space-age__/sound/entity/foundry/foundry.ogg", volume = 0.6 },
+                sound_accents = {
+                    { sound = { filename = img("lumber-mill-saw-1.ogg"), volume = 0.8 },           frame = 26, audible_distance_modifier = 0.5 },
+                    { sound = { filename = img("lumber-mill-fall.ogg"), volume = 1.2 },            frame = 42, audible_distance_modifier = 0.5 },
+                    { sound = { filename = img("lumber-mill-saw-2.ogg"), volume = 0.8 },           frame = 53, audible_distance_modifier = 0.4 },
+                    { sound = { filename = img("lumber-mill-split.ogg"), volume = 0.4 },           frame = 62, audible_distance_modifier = 0.3 },
+                    { sound = { variations = sound_variations(img("lumber-mill-plank"), 3, 0.5) }, frame = 14, audible_distance_modifier = 0.3 },
+                    { sound = { variations = sound_variations(img("lumber-mill-plank"), 3, 0.5) }, frame = 34, audible_distance_modifier = 0.3 },
+                    { sound = { variations = sound_variations(img("lumber-mill-plank"), 3, 0.5) }, frame = 54, audible_distance_modifier = 0.3 },
+                    { sound = { variations = sound_variations(img("lumber-mill-plank"), 3, 0.5) }, frame = 74, audible_distance_modifier = 0.3 },
+                }
+            }
         }
 
         if (self._baseProductivity) then
