@@ -1,0 +1,14 @@
+{
+   "name": "mf-demo",
+   "version": "1.0.0",
+   "title": "Mod Framework - Demo",
+   "description": "Demo mod for the Mod Framework.",
+   "author": "cackling fiend",
+   "homepage": "https://simonbrodtmann.github.io/mod-framework/",
+   "factorio_version": "2.0",
+   "dependencies": [
+      "base",
+      "mf-buildings",
+      "mf-logistics"
+   ]
+}
