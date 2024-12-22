@@ -22,7 +22,7 @@
     </tr>
     <tr>
         <th>Sounds</th>
-        <td>no</td>
+        <td>yes</td>
     </tr>
     <tr>
         <th>Credits</th>

@@ -121,6 +121,32 @@ local AdvancedFoundryEntityBuilder = EntityBuilder:new({
             },
             open_sound = sounds.metal_large_open,
             close_sound = sounds.metal_large_close,
+            working_sound = {
+                fade_in_ticks = 4,
+                fade_out_ticks = 20,
+                audible_distance_modifier = 0.6,
+                max_sounds_per_type = 2,
+                sound = {
+                    filename = "__space-age__/sound/entity/foundry/foundry.ogg", volume = 0.5
+                },
+                sound_accents = {
+                    { sound = { filename = "__space-age__/sound/entity/foundry/foundry-rocks.ogg", volume = 0.65 },       frame = 1,   audible_distance_modifier = 0.3 },
+                    { sound = { filename = "__space-age__/sound/entity/foundry/foundry-rocks.ogg", volume = 0.65 },       frame = 61,  audible_distance_modifier = 0.3 },
+                    { sound = { variations = sound_variations("__space-age__/sound/entity/foundry/foundry-pour", 2) },    frame = 18,  audible_distance_modifier = 0.4 },
+                    { sound = { filename = "__space-age__/sound/entity/foundry/foundry-slide-close.ogg", volume = 0.65 }, frame = 8,   audible_distance_modifier = 0.3 },
+                    { sound = { filename = "__space-age__/sound/entity/foundry/foundry-clamp.ogg", volume = 0.45 },       frame = 18,  audible_distance_modifier = 0.5 },
+                    { sound = { filename = "__space-age__/sound/entity/foundry/foundry-slide-open.ogg", volume = 0.65 },  frame = 30,  audible_distance_modifier = 0.3 },
+                    { sound = { filename = "__space-age__/sound/entity/foundry/foundry-slide-close.ogg", volume = 0.65 }, frame = 38,  audible_distance_modifier = 0.3 },
+                    { sound = { filename = "__space-age__/sound/entity/foundry/foundry-clamp.ogg", volume = 0.45 },       frame = 48,  audible_distance_modifier = 0.5 },
+                    { sound = { filename = "__space-age__/sound/entity/foundry/foundry-slide-open.ogg", volume = 0.65 },  frame = 60,  audible_distance_modifier = 0.3 },
+                    { sound = { filename = "__space-age__/sound/entity/foundry/foundry-slide-close.ogg", volume = 0.65 }, frame = 68,  audible_distance_modifier = 0.3 },
+                    { sound = { filename = "__space-age__/sound/entity/foundry/foundry-clamp.ogg", volume = 0.45 },       frame = 78,  audible_distance_modifier = 0.5 },
+                    { sound = { filename = "__space-age__/sound/entity/foundry/foundry-slide-open.ogg", volume = 0.65 },  frame = 90,  audible_distance_modifier = 0.3 },
+                    { sound = { filename = "__space-age__/sound/entity/foundry/foundry-slide-close.ogg", volume = 0.65 }, frame = 98,  audible_distance_modifier = 0.3 },
+                    { sound = { filename = "__space-age__/sound/entity/foundry/foundry-clamp.ogg", volume = 0.45 },       frame = 108, audible_distance_modifier = 0.5 },
+                    { sound = { filename = "__space-age__/sound/entity/foundry/foundry-slide-open.ogg", volume = 0.65 },  frame = 120, audible_distance_modifier = 0.3 },
+                }
+            },
             --fluid_boxes = table.deepcopy(data.raw["assembling-machine"]["foundry"].fluid_boxes),
             --fluid_boxes_off_when_no_fluid_recipe = true,
         }
