@@ -1,3 +1,5 @@
+local mfUtil = require(MF.lib .. "util")
+
 -- Lumber mill
 
 local LumberMillFactory = require(MF.buildings .. "LumberMill")
@@ -13,6 +15,7 @@ data:extend({
 LumberMill.EntityBuilder:new()
     :burnerEnergySource({ emissions_per_minute = { pollution = 4 } })
     :baseProductivity(0.5)
+    :allowProductivity(true)
     :apply({
         crafting_categories = { "wood-processing-or-assembling" },
         crafting_speed = 4,
@@ -40,6 +43,11 @@ LumberMill.TechnologyBuilder:new()
     :time(60)
     :apply()
 
+data.raw.recipe["wooden-chest"].category = "wood-processing-or-assembling"
+data.raw.recipe["small-electric-pole"].category = "wood-processing-or-assembling"
+table.insert(data.raw["assembling-machine"]["assembling-machine-1"].crafting_categories, "wood-processing-or-assembling")
+table.insert(data.raw["assembling-machine"]["assembling-machine-2"].crafting_categories, "wood-processing-or-assembling")
+table.insert(data.raw["assembling-machine"]["assembling-machine-3"].crafting_categories, "wood-processing-or-assembling")
 
 -- Atom forge
 
@@ -51,8 +59,12 @@ AtomForge.EntityBuilder:new()
         fuel_categories = nil, -- Remove default before adding new
         emissions_per_minute = { pollution = nil }
     })
+    :allowProductivity(true)
     :apply({
-        crafting_categories = table.deepcopy(data.raw["assembling-machine"]["assembling-machine-3"].crafting_categories),
+        crafting_categories = mfUtil.filter(
+            data.raw["assembling-machine"]["assembling-machine-3"].crafting_categories,
+            { "crafting-with-fluid", "electronics-with-fluid", "crafting-with-fluid-or-metallurgy" }
+        ),
         crafting_speed = 8,
         energy_usage = "4MW",
         energy_source = {
@@ -64,11 +76,42 @@ AtomForge.ItemBuilder:new():apply()
 
 AtomForge.RecipeBuilder:new()
     :ingredients({
-        { type = "item", name = "stone-brick", amount = 40 }
+        { type = "item", name = "iron-plate", amount = 100 }
     })
     :apply()
 
 AtomForge.TechnologyBuilder:new()
+    :prerequisites({ "automation-science-pack" })
+    :count(500)
+    :ingredients({ { "automation-science-pack", 1 } })
+    :time(60)
+    :apply()
+
+-- Advanced foundry
+
+local AdvancedfoundryFactory = require(MF.buildings .. "Advancedfoundry")
+local Advancedfoundry = AdvancedfoundryFactory()
+
+Advancedfoundry.EntityBuilder:new()
+    :baseProductivity(0.5)
+    :allowProductivity(true)
+    :apply({
+        crafting_categories = table.deepcopy(data.raw["assembling-machine"]["foundry"].crafting_categories),
+        crafting_speed = 8,
+        energy_usage = "4MW"
+    })
+
+Advancedfoundry.ItemBuilder:new():apply()
+
+Advancedfoundry.RecipeBuilder:new()
+    :ingredients({
+        { type = "item", name = "iron-plate", amount = 100 }
+    })
+    :apply({
+        category = "metallurgy-or-assembling"
+    })
+
+Advancedfoundry.TechnologyBuilder:new()
     :prerequisites({ "automation-science-pack" })
     :count(500)
     :ingredients({ { "automation-science-pack", 1 } })
