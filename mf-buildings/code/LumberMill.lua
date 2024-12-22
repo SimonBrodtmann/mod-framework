@@ -6,6 +6,7 @@ local EntityBuilder = require(MF.lib .. "EntityBuilder")
 local ItemBuilder = require(MF.lib .. "ItemBuilder")
 local RecipeBuilder = require(MF.lib .. "RecipeBuilder")
 local TechnologyBuilder = require(MF.lib .. "TechnologyBuilder")
+local mfUtil = require(MF.lib .. "util")
 
 local img = ImageFactory("buildings-graphics", "1", "/lumber-mill/")
 
@@ -23,8 +24,8 @@ local LumberMillEntityBuilder = EntityBuilder:new({
             max_health = 500,
             corpse = "foundry-remnants",
             dying_explosion = "foundry-explosion",
-            collision_box = { { -3.7, -3.7 }, { 3.7, 3.7 } },
-            selection_box = { { -4, -4 }, { 4, 4 } },
+            collision_box = mfUtil.collisionBox(8, 8),
+            selection_box = mfUtil.selectionBox(8, 8),
             damaged_trigger_effect = hit_effects.entity(),
             drawing_box_vertical_extension = 1.3,
             module_slots = 4,
@@ -33,7 +34,7 @@ local LumberMillEntityBuilder = EntityBuilder:new({
                 { inventory_index = defines.inventory.assembling_machine_modules, shift = { 0, 1.25 } }
             },
             allowed_effects = { "consumption", "speed", "pollution", "quality" },
-            crafting_categories = { "assembling" },
+            crafting_categories = {},
             crafting_speed = 2,
             energy_source = self._energySource,
             energy_usage = "100kW",
@@ -60,6 +61,7 @@ local LumberMillEntityBuilder = EntityBuilder:new({
                             height = 557,
                             frame_count = 80,
                             lines_per_file = 8,
+                            animation_speed = 0.15,
                             shift = util.by_pixel(0, -8),
                             scale = 0.5,
                             stripes = {
@@ -75,47 +77,58 @@ local LumberMillEntityBuilder = EntityBuilder:new({
                                 }
                             }
                         },
-                        {
-                            priority = "high",
-                            blend_mode = "additive",
-                            width = 525,
-                            height = 557,
-                            frame_count = 80,
-                            lines_per_file = 8,
-                            shift = util.by_pixel(0, -8),
-                            scale = 0.5,
-                            stripes = {
+                    }
+                },
+                working_visualisations = {
+                    {
+                        fadeout = true,
+                        animation = {
+                            layers = {
                                 {
-                                    filename = img("lumber-mill-emission-1.png"),
-                                    width_in_frames = 8,
-                                    height_in_frames = 8
+                                    priority = "high",
+                                    width = 525,
+                                    height = 557,
+                                    frame_count = 80,
+                                    lines_per_file = 8,
+                                    animation_speed = 0.15,
+                                    shift = util.by_pixel(0, -8),
+                                    scale = 0.5,
+                                    stripes = {
+                                        {
+                                            filename = img("lumber-mill-animation-1.png"),
+                                            width_in_frames = 8,
+                                            height_in_frames = 8
+                                        },
+                                        {
+                                            filename = img("lumber-mill-animation-2.png"),
+                                            width_in_frames = 8,
+                                            height_in_frames = 2
+                                        }
+                                    }
                                 },
                                 {
-                                    filename = img("lumber-mill-emission-2.png"),
-                                    width_in_frames = 8,
-                                    height_in_frames = 2
-                                }
-                            }
-                        },
-                        {
-                            priority = "high",
-                            draw_as_light = true,
-                            width = 525,
-                            height = 557,
-                            frame_count = 80,
-                            lines_per_file = 8,
-                            shift = util.by_pixel(0, -8),
-                            scale = 0.5,
-                            stripes = {
-                                {
-                                    filename = img("lumber-mill-emission-1.png"),
-                                    width_in_frames = 8,
-                                    height_in_frames = 8
-                                },
-                                {
-                                    filename = img("lumber-mill-emission-2.png"),
-                                    width_in_frames = 8,
-                                    height_in_frames = 2
+                                    priority = "high",
+                                    draw_as_glow = true,
+                                    blend_mode = "additive",
+                                    width = 525,
+                                    height = 557,
+                                    frame_count = 80,
+                                    lines_per_file = 8,
+                                    animation_speed = 0.15,
+                                    shift = util.by_pixel(0, -8),
+                                    scale = 0.5,
+                                    stripes = {
+                                        {
+                                            filename = img("lumber-mill-emission-1.png"),
+                                            width_in_frames = 8,
+                                            height_in_frames = 8
+                                        },
+                                        {
+                                            filename = img("lumber-mill-emission-2.png"),
+                                            width_in_frames = 8,
+                                            height_in_frames = 2
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -162,7 +175,7 @@ local LumberMillItemBuilder = ItemBuilder:new({
         }
 
         if (overrides) then
-            result = meld(result, overrides )
+            result = meld(result, overrides)
         end
 
         return result
