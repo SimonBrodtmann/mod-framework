@@ -1,6 +1,6 @@
 {
    "name": "mf-core",
-   "version": "1.0.0",
+   "version": "1.0.1",
    "title": "Mod Framework - Core",
    "description": "Core functionalities used by all mods in the Mod Framework.",
    "author": "cackling fiend",
