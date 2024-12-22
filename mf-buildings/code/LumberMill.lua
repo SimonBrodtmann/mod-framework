@@ -9,7 +9,7 @@ local TechnologyBuilder = require(MF.lib .. "TechnologyBuilder")
 
 local img = ImageFactory("buildings-graphics", "1", "/lumber-mill/")
 
---- Lumber Mill entity builder class
+--- Lumber mill entity builder class
 --- @class LumberMillEntityBuilder : EntityBuilder
 local LumberMillEntityBuilder = EntityBuilder:new({
     build = function(self, overrides)
@@ -50,7 +50,7 @@ local LumberMillEntityBuilder = EntityBuilder:new({
                             line_length = 1,
                             repeat_count = 80,
                             animation_speed = 0.15,
-                            shift = { 0, 0 },
+                            shift = util.by_pixel(0, -8),
                             draw_as_shadow = true,
                             scale = 0.5
                         },
@@ -60,7 +60,7 @@ local LumberMillEntityBuilder = EntityBuilder:new({
                             height = 557,
                             frame_count = 80,
                             lines_per_file = 8,
-                            shift = { 0, 0 },
+                            shift = util.by_pixel(0, -8),
                             scale = 0.5,
                             stripes = {
                                 {
@@ -77,21 +77,43 @@ local LumberMillEntityBuilder = EntityBuilder:new({
                         },
                         {
                             priority = "high",
+                            blend_mode = "additive",
+                            width = 525,
+                            height = 557,
+                            frame_count = 80,
+                            lines_per_file = 8,
+                            shift = util.by_pixel(0, -8),
+                            scale = 0.5,
+                            stripes = {
+                                {
+                                    filename = img("lumber-mill-emission-1.png"),
+                                    width_in_frames = 8,
+                                    height_in_frames = 8
+                                },
+                                {
+                                    filename = img("lumber-mill-emission-2.png"),
+                                    width_in_frames = 8,
+                                    height_in_frames = 2
+                                }
+                            }
+                        },
+                        {
+                            priority = "high",
                             draw_as_light = true,
                             width = 525,
                             height = 557,
                             frame_count = 80,
                             lines_per_file = 8,
-                            shift = { 0, 0 },
+                            shift = util.by_pixel(0, -8),
                             scale = 0.5,
                             stripes = {
                                 {
-                                    filename = img("lumber-mill-light-1.png"),
+                                    filename = img("lumber-mill-emission-1.png"),
                                     width_in_frames = 8,
                                     height_in_frames = 8
                                 },
                                 {
-                                    filename = img("lumber-mill-light-2.png"),
+                                    filename = img("lumber-mill-emission-2.png"),
                                     width_in_frames = 8,
                                     height_in_frames = 2
                                 }
@@ -120,7 +142,7 @@ local LumberMillEntityBuilder = EntityBuilder:new({
     end
 })
 
---- Lumber Mill item builder class
+--- Lumber mill item builder class
 --- @class LumberMillItemBuilder : ItemBuilder
 local LumberMillItemBuilder = ItemBuilder:new({
     build = function(self, overrides)
@@ -135,7 +157,7 @@ local LumberMillItemBuilder = ItemBuilder:new({
             drop_sound = item_sounds.mechanical_large_inventory_move,
             place_result = self.name,
             stack_size = 20,
-            default_import_location = "Nauvis",
+            default_import_location = "nauvis",
             weight = self._weight
         }
 
@@ -147,14 +169,14 @@ local LumberMillItemBuilder = ItemBuilder:new({
     end
 })
 
---- Lumber Mill recipe builder class
+--- Lumber mill recipe builder class
 --- @class LumberMillRecipeBuilder : RecipeBuilder
 local LumberMillRecipeBuilder = RecipeBuilder:new({
     build = function(self, overrides)
         local result = {
             type = "recipe",
             name = self.name,
-            category = "assembling",
+            category = "crafting",
             enabled = false,
             ingredients = self._ingredients,
             energy_required = 60,
@@ -170,7 +192,7 @@ local LumberMillRecipeBuilder = RecipeBuilder:new({
     end
 })
 
---- Lumber Mill technology builder class
+--- Lumber mill technology builder class
 --- @class LumberMillTechnologyBuilder : TechnologyBuilder
 local LumberMillTechnologyBuilder = TechnologyBuilder:new({
     _icon = img("lumber-mill-technology.png"),
@@ -194,7 +216,7 @@ local LumberMillTechnologyBuilder = TechnologyBuilder:new({
     end
 })
 
---- Lumber Mill factory function
+--- Lumber mill factory function
 --- @param name string The technical name of this lumber mill instance (default: "lumber-mill")
 --- @return table A table containing the builders for entity, item, recipe, and technology
 return function(name)
