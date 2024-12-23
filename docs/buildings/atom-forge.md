@@ -26,11 +26,11 @@
     </tr>
     <tr>
         <th>Credits</th>
-        <td><a href="https://www.figma.com/proto/y1IQG08ZG2jIeJ5sTyF4MP/Factorio-Buildings" target="_blank">Hurricane</a></td>
+        <td><a href="https://www.figma.com/proto/y1IQG08ZG2jIeJ5sTyF4MP/Factorio-Buildings" target="_blank">Hurricane</a> / Pixabay (Sounds)</td>
     </tr>
     <tr>
         <th>License</th>
-        <td><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY</a></td>
+        <td><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY</a> / <a href="https://pixabay.com/service/license-summary/" target="_blank">Pixabay License</a></td>
     </tr>
 </table>
 

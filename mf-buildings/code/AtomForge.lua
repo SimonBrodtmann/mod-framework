@@ -135,8 +135,24 @@ local AtomForgeEntityBuilder = EntityBuilder:new({
                     }
                 }
             },
-            open_sound = { filename = "__base__/sound/open-close/train-stop-open.ogg", volume = 0.6 },
-            close_sound = { filename = "__base__/sound/open-close/train-stop-close.ogg", volume = 0.5 },
+            open_sound = { filename = img("plasma-large-open.ogg"), volume = 1.0 },
+            close_sound = { filename = img("plasma-large-close.ogg"), volume = 1.0 },
+            working_sound = {
+                fade_in_ticks = 4,
+                fade_out_ticks = 20,
+                audible_distance_modifier = 0.6,
+                max_sounds_per_type = 2,
+                main_sounds = {
+                    {
+                        sound = { filename = img("atom-forge-working-1.ogg"), volume = 0.8 },
+                        audible_distance_modifier = 0.8,
+                    },
+                    {
+                        sound = { filename = img("atom-forge-working-2.ogg"), volume = 0.5 },
+                        audible_distance_modifier = 0.4,
+                    }
+                }
+            }
         }
 
         if (self._baseProductivity) then
