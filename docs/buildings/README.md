@@ -5,4 +5,6 @@ If you want to try things out in game, install the mod [mf-demo](https://mods.fa
 
 [filename](atom-forge.md ':include')
 
+[filename](gravity-assembler.md ':include')
+
 [filename](lumber-mill.md ':include')

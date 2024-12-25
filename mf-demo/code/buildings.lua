@@ -89,10 +89,10 @@ AtomForge.TechnologyBuilder:new()
 
 -- Advanced foundry
 
-local AdvancedfoundryFactory = require(MF.buildings .. "Advancedfoundry")
-local Advancedfoundry = AdvancedfoundryFactory()
+local AdvancedFoundryFactory = require(MF.buildings .. "AdvancedFoundry")
+local AdvancedFoundry = AdvancedFoundryFactory()
 
-Advancedfoundry.EntityBuilder:new()
+AdvancedFoundry.EntityBuilder:new()
     :baseProductivity(0.5)
     :allowProductivity(true)
     :apply({
@@ -101,9 +101,9 @@ Advancedfoundry.EntityBuilder:new()
         energy_usage = "4MW"
     })
 
-Advancedfoundry.ItemBuilder:new():apply()
+AdvancedFoundry.ItemBuilder:new():apply()
 
-Advancedfoundry.RecipeBuilder:new()
+AdvancedFoundry.RecipeBuilder:new()
     :ingredients({
         { type = "item", name = "iron-plate", amount = 100 }
     })
@@ -111,7 +111,33 @@ Advancedfoundry.RecipeBuilder:new()
         category = "metallurgy-or-assembling"
     })
 
-Advancedfoundry.TechnologyBuilder:new()
+AdvancedFoundry.TechnologyBuilder:new()
+    :prerequisites({ "automation-science-pack" })
+    :count(500)
+    :ingredients({ { "automation-science-pack", 1 } })
+    :time(60)
+    :apply()
+
+-- Gravity assembler
+
+local GravityAssemblerFactory = require(MF.buildings .. "GravityAssembler")
+local GravityAssembler = GravityAssemblerFactory()
+
+GravityAssembler.EntityBuilder:new()
+    :allowProductivity(true)
+    :apply({
+        crafting_categories = table.deepcopy(data.raw["assembling-machine"]["assembling-machine-3"].crafting_categories)
+    })
+
+GravityAssembler.ItemBuilder:new():apply()
+
+GravityAssembler.RecipeBuilder:new()
+    :ingredients({
+        { type = "item", name = "iron-plate", amount = 100 }
+    })
+    :apply()
+
+GravityAssembler.TechnologyBuilder:new()
     :prerequisites({ "automation-science-pack" })
     :count(500)
     :ingredients({ { "automation-science-pack", 1 } })
