@@ -37,20 +37,22 @@
 ### Minimal example
 
 ```lua
-local GravityAssemblerFactory = require(MF.buildings .. "GravityAssembler")
-local GravityAssembler = GravityAssemblerFactory()
+local ArcFurnaceFactory = require(MF.buildings .. "ArcFurnace")
+local ArcFurnace = ArcFurnaceFactory()
 
-GravityAssembler.EntityBuilder:new():apply()
+ArcFurnace.EntityBuilder:new()
+    :allowProductivity(true)
+    :apply()
 
-GravityAssembler.ItemBuilder:new():apply()
+ArcFurnace.ItemBuilder:new():apply()
 
-GravityAssembler.RecipeBuilder:new()
+ArcFurnace.RecipeBuilder:new()
     :ingredients({
         { type = "item", name = "iron-plate", amount = 100 }
     })
     :apply()
 
-GravityAssembler.TechnologyBuilder:new()
+ArcFurnace.TechnologyBuilder:new()
     :prerequisites({ "automation-science-pack" })
     :count(500)
     :ingredients({ { "automation-science-pack", 1 } })
@@ -61,24 +63,24 @@ GravityAssembler.TechnologyBuilder:new()
 ### Usage example
 
 ```lua
-local GravityAssemblerFactory = require(MF.buildings .. "GravityAssembler")
-local GravityAssembler = GravityAssemblerFactory()
+local ArcFurnaceFactory = require(MF.buildings .. "ArcFurnace")
+local ArcFurnace = ArcFurnaceFactory()
 
-GravityAssembler.EntityBuilder:new()
+ArcFurnace.EntityBuilder:new()
     :allowProductivity(true)
     :apply({
-        crafting_categories = table.deepcopy(data.raw["assembling-machine"]["assembling-machine-3"].crafting_categories)
+        crafting_categories = table.deepcopy(data.raw["furnace"]["electric-furnace"].crafting_categories)
     })
 
-GravityAssembler.ItemBuilder:new():apply()
+ArcFurnace.ItemBuilder:new():apply()
 
-GravityAssembler.RecipeBuilder:new()
+ArcFurnace.RecipeBuilder:new()
     :ingredients({
         { type = "item", name = "iron-plate", amount = 100 }
     })
     :apply()
 
-GravityAssembler.TechnologyBuilder:new()
+ArcFurnace.TechnologyBuilder:new()
     :prerequisites({ "automation-science-pack" })
     :count(500)
     :ingredients({ { "automation-science-pack", 1 } })
