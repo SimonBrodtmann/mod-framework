@@ -143,3 +143,29 @@ GravityAssembler.TechnologyBuilder:new()
     :ingredients({ { "automation-science-pack", 1 } })
     :time(60)
     :apply()
+    
+-- Arc furnace
+    
+    local ArcFurnaceFactory = require(MF.buildings .. "ArcFurnace")
+    local ArcFurnace = ArcFurnaceFactory()
+    
+    ArcFurnace.EntityBuilder:new()
+        :allowProductivity(true)
+        :apply({
+            crafting_categories = table.deepcopy(data.raw["furnace"]["electric-furnace"].crafting_categories)
+        })
+    
+    ArcFurnace.ItemBuilder:new():apply()
+    
+    ArcFurnace.RecipeBuilder:new()
+        :ingredients({
+            { type = "item", name = "iron-plate", amount = 100 }
+        })
+        :apply()
+    
+    ArcFurnace.TechnologyBuilder:new()
+        :prerequisites({ "automation-science-pack" })
+        :count(500)
+        :ingredients({ { "automation-science-pack", 1 } })
+        :time(60)
+        :apply()

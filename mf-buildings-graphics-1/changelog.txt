@@ -3,6 +3,7 @@ Version: 1.0.4
 Date: 23.12.2024
   Added:
     - Gravity assembler
+    - Arc furnace
   Changed:
     - Optimized graphics file sizes
 ---------------------------------------------------------------------------------------------------

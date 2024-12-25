@@ -3,6 +3,8 @@ If you want to try things out in game, install the mod [mf-demo](https://mods.fa
 
 [filename](advanced-foundry.md ':include')
 
+[filename](arc-furnace.md ':include')
+
 [filename](atom-forge.md ':include')
 
 [filename](gravity-assembler.md ':include')
