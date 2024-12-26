@@ -93,6 +93,7 @@ local AdvancedFoundryFactory = require(MF.buildings .. "AdvancedFoundry")
 local AdvancedFoundry = AdvancedFoundryFactory()
 
 AdvancedFoundry.EntityBuilder:new()
+    :pipes()
     :baseProductivity(0.5)
     :allowProductivity(true)
     :apply({

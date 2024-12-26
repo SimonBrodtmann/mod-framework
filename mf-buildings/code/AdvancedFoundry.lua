@@ -39,6 +39,15 @@ end
 --- Advanced foundry entity builder class
 --- @class AdvancedFoundryEntityBuilder : EntityBuilder
 local AdvancedFoundryEntityBuilder = EntityBuilder:new({
+    _pipes = false,
+
+    --- Enables pipes
+    --- @return ChemicalStagerEntityBuilder
+    pipes = function(self)
+        self._pipes = true
+        return self
+    end,
+
     build = function(self, overrides)
         local result = {
             type = "assembling-machine",
@@ -146,9 +155,7 @@ local AdvancedFoundryEntityBuilder = EntityBuilder:new({
                     { sound = { filename = "__space-age__/sound/entity/foundry/foundry-clamp.ogg", volume = 0.45 },       frame = 108, audible_distance_modifier = 0.5 },
                     { sound = { filename = "__space-age__/sound/entity/foundry/foundry-slide-open.ogg", volume = 0.65 },  frame = 120, audible_distance_modifier = 0.3 },
                 }
-            },
-            --fluid_boxes = table.deepcopy(data.raw["assembling-machine"]["foundry"].fluid_boxes),
-            --fluid_boxes_off_when_no_fluid_recipe = true,
+            }
         }
 
         if (self._baseProductivity) then
@@ -157,6 +164,39 @@ local AdvancedFoundryEntityBuilder = EntityBuilder:new({
 
         if (self._allowProductivity) then
             table.insert(result.allowed_effects, "productivity")
+        end
+
+        if self._pipes then
+            result.fluid_boxes = {
+                {
+                    production_type = "input",
+                    pipe_picture = assembler2pipepictures(),
+                    pipe_covers = pipecoverspictures(),
+                    volume = 1000,
+                    pipe_connections = { { flow_direction = "input", direction = defines.direction.south, position = { -1.5, 3.5 } } }
+                },
+                {
+                    production_type = "input",
+                    pipe_picture = assembler2pipepictures(),
+                    pipe_covers = pipecoverspictures(),
+                    volume = 1000,
+                    pipe_connections = { { flow_direction = "input", direction = defines.direction.south, position = { 1.5, 3.5 } } }
+                },
+                {
+                    production_type = "output",
+                    pipe_picture = assembler2pipepictures(),
+                    pipe_covers = pipecoverspictures(),
+                    volume = 100,
+                    pipe_connections = { { flow_direction = "output", direction = defines.direction.north, position = { -1.5, -3.5 } } }
+                },
+                {
+                    production_type = "output",
+                    pipe_picture = assembler2pipepictures(),
+                    pipe_covers = pipecoverspictures(),
+                    volume = 100,
+                    pipe_connections = { { flow_direction = "output", direction = defines.direction.north, position = { 1.5, -3.5 } } }
+                }
+            }
         end
 
         if (overrides) then
