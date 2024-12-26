@@ -1,7 +1,7 @@
 <details class="mf-entity-entry">
-<mf-entity-summary icon="buildings/gravity-assembler-icon.png">Gravity assembler</mf-entity-summary>
+<mf-entity-summary icon="buildings/gravity-assembler/gravity-assembler-icon.png">Gravity assembler</mf-entity-summary>
 
-![Preview](gravity-assembler-preview.png)
+![Preview](gravity-assembler/gravity-assembler-preview.png)
 
 <table>
     <tr>

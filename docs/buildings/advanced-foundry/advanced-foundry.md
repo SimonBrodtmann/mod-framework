@@ -1,7 +1,7 @@
 <details class="mf-entity-entry">
-<mf-entity-summary icon="buildings/advanced-foundry-icon.png">Advanced foundry</mf-entity-summary>
+<mf-entity-summary icon="buildings/advanced-foundry/advanced-foundry-icon.png">Advanced foundry</mf-entity-summary>
 
-![Preview](advanced-foundry-preview.png)
+![Preview](advanced-foundry/advanced-foundry-preview.png)
 
 <table>
     <tr>

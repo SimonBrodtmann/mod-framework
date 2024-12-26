@@ -1,7 +1,7 @@
 <details class="mf-entity-entry">
-<mf-entity-summary icon="buildings/atom-forge-icon.png">Atom forge</mf-entity-summary>
+<mf-entity-summary icon="buildings/atom-forge/atom-forge-icon.png">Atom forge</mf-entity-summary>
 
-![Preview](atom-forge-preview.png)
+![Preview](atom-forge/atom-forge-preview.png)
 
 <table>
     <tr>

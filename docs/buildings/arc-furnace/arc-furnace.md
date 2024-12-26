@@ -1,7 +1,7 @@
 <details class="mf-entity-entry">
-<mf-entity-summary icon="buildings/arc-furnace-icon.png">Arc furnace</mf-entity-summary>
+<mf-entity-summary icon="buildings/arc-furnace/arc-furnace-icon.png">Arc furnace</mf-entity-summary>
 
-![Preview](arc-furnace-preview.png)
+![Preview](arc-furnace/arc-furnace-preview.png)
 
 <table>
     <tr>

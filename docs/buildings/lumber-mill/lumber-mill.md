@@ -1,7 +1,7 @@
 <details class="mf-entity-entry">
-<mf-entity-summary icon="buildings/lumber-mill-icon.png">Lumber mill</mf-entity-summary>
+<mf-entity-summary icon="buildings/lumber-mill/lumber-mill-icon.png">Lumber mill</mf-entity-summary>
 
-![Preview](lumber-mill-preview.png)
+![Preview](lumber-mill/lumber-mill-preview.png)
 
 <table>
     <tr>
