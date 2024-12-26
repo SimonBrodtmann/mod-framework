@@ -125,6 +125,7 @@ local GravityAssemblerFactory = require(MF.buildings .. "GravityAssembler")
 local GravityAssembler = GravityAssemblerFactory()
 
 GravityAssembler.EntityBuilder:new()
+    :pipes()
     :allowProductivity(true)
     :apply({
         crafting_categories = table.deepcopy(data.raw["assembling-machine"]["assembling-machine-3"].crafting_categories)

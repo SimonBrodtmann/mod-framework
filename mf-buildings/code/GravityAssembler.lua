@@ -14,6 +14,15 @@ local img = ImageFactory("buildings-graphics", "1", "/gravity-assembler/")
 --- Gravity assembler entity builder class
 --- @class GravityAssemblerEntityBuilder : EntityBuilder
 local GravityAssemblerEntityBuilder = EntityBuilder:new({
+    _pipes = false,
+
+    --- Enables pipes
+    --- @return ChemicalStagerEntityBuilder
+    pipes = function(self)
+        self._pipes = true
+        return self
+    end,
+
     build = function(self, overrides)
         local result = {
             type = "assembling-machine",
@@ -142,6 +151,39 @@ local GravityAssemblerEntityBuilder = EntityBuilder:new({
 
         if (self._allowProductivity) then
             table.insert(result.allowed_effects, "productivity")
+        end
+
+        if self._pipes then
+            result.fluid_boxes = {
+                {
+                    production_type = "input",
+                    pipe_picture = assembler2pipepictures(),
+                    pipe_covers = pipecoverspictures(),
+                    volume = 1000,
+                    pipe_connections = { { flow_direction = "input", direction = defines.direction.south, position = { -1, 2 } } }
+                },
+                {
+                    production_type = "input",
+                    pipe_picture = assembler2pipepictures(),
+                    pipe_covers = pipecoverspictures(),
+                    volume = 1000,
+                    pipe_connections = { { flow_direction = "input", direction = defines.direction.south, position = { 1, 2 } } }
+                },
+                {
+                    production_type = "output",
+                    pipe_picture = assembler2pipepictures(),
+                    pipe_covers = pipecoverspictures(),
+                    volume = 100,
+                    pipe_connections = { { flow_direction = "output", direction = defines.direction.north, position = { -1, -2 } } }
+                },
+                {
+                    production_type = "output",
+                    pipe_picture = assembler2pipepictures(),
+                    pipe_covers = pipecoverspictures(),
+                    volume = 100,
+                    pipe_connections = { { flow_direction = "output", direction = defines.direction.north, position = { 1, -2 } } }
+                }
+            }
         end
 
         if (overrides) then

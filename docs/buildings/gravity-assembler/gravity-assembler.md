@@ -32,6 +32,10 @@
         <th>License</th>
         <td><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY</a></td>
     </tr>
+    <tr>
+        <th>API</th>
+        <td><a href="https://github.com/SimonBrodtmann/mod-framework/blob/main/mf-buildings/code/GravityAssembler.lua" target="_blank">/mf-buildings/code/GravityAssembler.lua</a></td>
+    </tr>
 </table>
 
 ### Minimal example
