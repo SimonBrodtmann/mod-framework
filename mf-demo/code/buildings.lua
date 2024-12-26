@@ -169,3 +169,30 @@ ArcFurnace.TechnologyBuilder:new()
     :ingredients({ { "automation-science-pack", 1 } })
     :time(60)
     :apply()
+    
+-- Chemical stager
+    
+local ChemicalStagerFactory = require(MF.buildings .. "ChemicalStager")
+local ChemicalStager = ChemicalStagerFactory()
+
+ChemicalStager.EntityBuilder:new()
+    :allowProductivity(true)
+    :pipes()
+    :apply({
+        crafting_categories = table.deepcopy(data.raw["assembling-machine"]["chemical-plant"].crafting_categories)
+    })
+
+ChemicalStager.ItemBuilder:new():apply()
+
+ChemicalStager.RecipeBuilder:new()
+    :ingredients({
+        { type = "item", name = "iron-plate", amount = 100 }
+    })
+    :apply()
+
+ChemicalStager.TechnologyBuilder:new()
+    :prerequisites({ "automation-science-pack" })
+    :count(500)
+    :ingredients({ { "automation-science-pack", 1 } })
+    :time(60)
+    :apply()

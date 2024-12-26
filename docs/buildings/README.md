@@ -7,6 +7,8 @@ If you want to try things out in game, install the mod [mf-demo](https://mods.fa
 
 [filename](atom-forge/atom-forge.md ':include')
 
+[filename](chemical-stager/chemical-stager.md ':include')
+
 [filename](gravity-assembler/gravity-assembler.md ':include')
 
 [filename](lumber-mill/lumber-mill.md ':include')
