@@ -17,7 +17,7 @@ end
 --- @param margin number The margin to apply to the collision box compared to the selection box (default: 0.3)
 --- @return table A table containing the collision box definition
 util.collisionBox = function(width, height, margin)
-    margin = margin or 0.3
+    margin = margin or 0.1
     return {
         { -width / 2 + margin, -height / 2 + margin },
         { width / 2 - margin, height / 2 - margin }
