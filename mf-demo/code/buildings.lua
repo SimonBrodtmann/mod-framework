@@ -198,3 +198,30 @@ ChemicalStager.TechnologyBuilder:new()
     :ingredients({ { "automation-science-pack", 1 } })
     :time(60)
     :apply()
+    
+-- Pathogen lab
+    
+local PathogenLabFactory = require(MF.buildings .. "PathogenLab")
+local PathogenLab = PathogenLabFactory()
+
+PathogenLab.EntityBuilder:new()
+    :allowProductivity(true)
+    :pipes()
+    :apply({
+        crafting_categories = table.deepcopy(data.raw["assembling-machine"]["biochamber"].crafting_categories)
+    })
+
+PathogenLab.ItemBuilder:new():apply()
+
+PathogenLab.RecipeBuilder:new()
+    :ingredients({
+        { type = "item", name = "iron-plate", amount = 100 }
+    })
+    :apply()
+
+PathogenLab.TechnologyBuilder:new()
+    :prerequisites({ "automation-science-pack" })
+    :count(500)
+    :ingredients({ { "automation-science-pack", 1 } })
+    :time(60)
+    :apply()

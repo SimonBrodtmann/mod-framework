@@ -41,19 +41,19 @@
 ### Minimal example
 
 ```lua
-local AdvancedfoundryFactory = require(MF.buildings .. "Advancedfoundry")
-local Advancedfoundry = AdvancedfoundryFactory()
+local AdvancedFoundryFactory = require(MF.buildings .. "AdvancedFoundry")
+local AdvancedFoundry = AdvancedFoundryFactory()
 
-Advancedfoundry.EntityBuilder:new()
+AdvancedFoundry.EntityBuilder:new()
     :baseProductivity(0.5)
     :allowProductivity(true)
     :apply({
         crafting_categories = table.deepcopy(data.raw["assembling-machine"]["foundry"].crafting_categories),
     })
 
-Advancedfoundry.ItemBuilder:new():apply()
+AdvancedFoundry.ItemBuilder:new():apply()
 
-Advancedfoundry.RecipeBuilder:new()
+AdvancedFoundry.RecipeBuilder:new()
     :ingredients({
         { type = "item", name = "iron-plate", amount = 100 }
     })
@@ -61,7 +61,7 @@ Advancedfoundry.RecipeBuilder:new()
         category = "metallurgy-or-assembling"
     })
 
-Advancedfoundry.TechnologyBuilder:new()
+AdvancedFoundry.TechnologyBuilder:new()
     :prerequisites({ "automation-science-pack" })
     :count(500)
     :ingredients({ { "automation-science-pack", 1 } })
@@ -72,10 +72,10 @@ Advancedfoundry.TechnologyBuilder:new()
 ### Usage example
 
 ```lua
-local AdvancedfoundryFactory = require(MF.buildings .. "Advancedfoundry")
-local Advancedfoundry = AdvancedfoundryFactory()
+local AdvancedFoundryFactory = require(MF.buildings .. "AdvancedFoundry")
+local AdvancedFoundry = AdvancedFoundryFactory()
 
-Advancedfoundry.EntityBuilder:new()
+AdvancedFoundry.EntityBuilder:new()
     :pipes()
     :baseProductivity(0.5)
     :allowProductivity(true)
@@ -85,9 +85,9 @@ Advancedfoundry.EntityBuilder:new()
         energy_usage = "4MW"
     })
 
-Advancedfoundry.ItemBuilder:new():apply()
+AdvancedFoundry.ItemBuilder:new():apply()
 
-Advancedfoundry.RecipeBuilder:new()
+AdvancedFoundry.RecipeBuilder:new()
     :ingredients({
         { type = "item", name = "iron-plate", amount = 100 }
     })
@@ -95,7 +95,7 @@ Advancedfoundry.RecipeBuilder:new()
         category = "metallurgy-or-assembling"
     })
 
-Advancedfoundry.TechnologyBuilder:new()
+AdvancedFoundry.TechnologyBuilder:new()
     :prerequisites({ "automation-science-pack" })
     :count(500)
     :ingredients({ { "automation-science-pack", 1 } })

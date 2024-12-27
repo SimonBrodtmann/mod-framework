@@ -12,3 +12,5 @@ If you want to try things out in game, install the mod [mf-demo](https://mods.fa
 [filename](gravity-assembler/gravity-assembler.md ':include')
 
 [filename](lumber-mill/lumber-mill.md ':include')
+
+[filename](pathogen-lab/pathogen-lab.md ':include')
