@@ -9,25 +9,25 @@ local RecipeBuilder = require(MF.lib .. "RecipeBuilder")
 local TechnologyBuilder = require(MF.lib .. "TechnologyBuilder")
 local mfUtil = require(MF.lib .. "util")
 
-local img = ImageFactory("buildings-graphics", "1", "/core-extractor/")
+local img = ImageFactory("buildings-graphics", "1", "/quantum-stabilizer/")
 
 local function animationLayer()
     return {
         priority = "high",
-        width = 704,
-        height = 704,
-        frame_count = 120,
+        width = 410,
+        height = 410,
+        frame_count = 100,
         lines_per_file = 8,
         animation_speed = 0.15,
         scale = 0.5,
         stripes = {
             {
-                filename = img("core-extractor-animation-1.png"),
+                filename = img("quantum-stabilizer-animation-1.png"),
                 width_in_frames = 8,
                 height_in_frames = 8
             },
             {
-                filename = img("core-extractor-animation-2.png"),
+                filename = img("quantum-stabilizer-animation-2.png"),
                 width_in_frames = 8,
                 height_in_frames = 7
             }
@@ -35,22 +35,22 @@ local function animationLayer()
     }
 end
 
---- Core extractor entity builder class
---- @class CoreExtractorEntityBuilder : EntityBuilder
-local CoreExtractorEntityBuilder = EntityBuilder:new({
+--- Quantum stabilizer entity builder class
+--- @class QuantumStabilizerEntityBuilder : EntityBuilder
+local QuantumStabilizerEntityBuilder = EntityBuilder:new({
     build = function(self, overrides)
         local result = {
-            type = "mining-drill",
+            type = "assembling-machine",
             name = self.name,
-            icon = img("core-extractor-icon.png"),
-            flags = { "placeable-neutral", "player-creation" },
+            icon = img("quantum-stabilizer-icon.png"),
+            flags = { "placeable-neutral", "player-creation", "placeable-player" },
             minable = { mining_time = 0.2, result = self.name },
             fast_replaceable_group = self.name,
             max_health = 500,
             corpse = "big-remnants",
             dying_explosion = "medium-explosion",
-            collision_box = mfUtil.collisionBox(11, 11),
-            selection_box = mfUtil.selectionBox(11, 11),
+            collision_box = mfUtil.collisionBox(6, 6),
+            selection_box = mfUtil.selectionBox(6, 6),
             damaged_trigger_effect = hit_effects.entity(),
             drawing_box_vertical_extension = 1.3,
             module_slots = 4,
@@ -59,25 +59,22 @@ local CoreExtractorEntityBuilder = EntityBuilder:new({
                 { inventory_index = defines.inventory.assembling_machine_modules, shift = { 0, 1.25 } }
             },
             allowed_effects = { "consumption", "speed", "pollution", "quality" },
-            mining_speed = 5,
-            resource_categories = { "basic-solid", "hard-solid" },
-            drops_full_belt_stacks = true,
-            resource_searching_radius = 4.99,
-            vector_to_place_result = { 0, -5.85 },
+            crafting_categories = {},
+            crafting_speed = 4,
             energy_source = self._energySource,
-            energy_usage = "1MW",
+            energy_usage = "4MW",
             perceived_performance = { minimum = 0.25, performance_to_activity_rate = 2.0, maximum = 20 },
             graphics_set = {
                 animation = {
                     layers = {
                         {
-                            filename = img("core-extractor-shadow.png"),
+                            filename = img("quantum-stabilizer-shadow.png"),
                             priority = "high",
-                            width = 1400,
-                            height = 1400,
+                            width = 900,
+                            height = 420,
                             frame_count = 1,
                             line_length = 1,
-                            repeat_count = 120,
+                            repeat_count = 100,
                             animation_speed = 0.15,
                             draw_as_shadow = true,
                             scale = 0.5
@@ -95,20 +92,20 @@ local CoreExtractorEntityBuilder = EntityBuilder:new({
                                     priority = "high",
                                     draw_as_glow = true,
                                     blend_mode = "additive",
-                                    width = 704,
-                                    height = 704,
-                                    frame_count = 120,
+                                    width = 410,
+                                    height = 410,
+                                    frame_count = 100,
                                     lines_per_file = 8,
                                     animation_speed = 0.15,
                                     scale = 0.5,
                                     stripes = {
                                         {
-                                            filename = img("core-extractor-emission-1.png"),
+                                            filename = img("quantum-stabilizer-emission-1.png"),
                                             width_in_frames = 8,
                                             height_in_frames = 8
                                         },
                                         {
-                                            filename = img("core-extractor-emission-2.png"),
+                                            filename = img("quantum-stabilizer-emission-2.png"),
                                             width_in_frames = 8,
                                             height_in_frames = 7
                                         }
@@ -119,8 +116,8 @@ local CoreExtractorEntityBuilder = EntityBuilder:new({
                     }
                 }
             },
-            open_sound = sounds.drill_open,
-            close_sound = sounds.drill_close
+            open_sound = sounds.machine_open,
+            close_sound = sounds.machine_close
         }
 
         if (self._baseProductivity) then
@@ -139,14 +136,14 @@ local CoreExtractorEntityBuilder = EntityBuilder:new({
     end
 })
 
---- Core extractor item builder class
---- @class CoreExtractorItemBuilder : ItemBuilder
-local CoreExtractorItemBuilder = ItemBuilder:new({
+--- Quantum stabilizer item builder class
+--- @class QuantumStabilizerItemBuilder : ItemBuilder
+local QuantumStabilizerItemBuilder = ItemBuilder:new({
     build = function(self, overrides)
         local result = {
             type = "item",
             name = self.name,
-            icon = img("core-extractor-icon.png"),
+            icon = img("quantum-stabilizer-icon.png"),
             subgroup = "production-machine",
             order = "d[" .. self.name .. "]",
             inventory_move_sound = item_sounds.mechanical_large_inventory_move,
@@ -166,9 +163,9 @@ local CoreExtractorItemBuilder = ItemBuilder:new({
     end
 })
 
---- Core extractor recipe builder class
---- @class CoreExtractorRecipeBuilder : RecipeBuilder
-local CoreExtractorRecipeBuilder = RecipeBuilder:new({
+--- Quantum stabilizer recipe builder class
+--- @class QuantumStabilizerRecipeBuilder : RecipeBuilder
+local QuantumStabilizerRecipeBuilder = RecipeBuilder:new({
     build = function(self, overrides)
         local result = {
             type = "recipe",
@@ -189,10 +186,10 @@ local CoreExtractorRecipeBuilder = RecipeBuilder:new({
     end
 })
 
---- Core extractor technology builder class
---- @class CoreExtractorTechnologyBuilder : TechnologyBuilder
-local CoreExtractorTechnologyBuilder = TechnologyBuilder:new({
-    _icon = img("core-extractor-technology.png"),
+--- Quantum stabilizer technology builder class
+--- @class QuantumStabilizerTechnologyBuilder : TechnologyBuilder
+local QuantumStabilizerTechnologyBuilder = TechnologyBuilder:new({
+    _icon = img("quantum-stabilizer-technology.png"),
 
     build = function(self, overrides)
         local result = {
@@ -213,16 +210,16 @@ local CoreExtractorTechnologyBuilder = TechnologyBuilder:new({
     end
 })
 
---- Core extractor factory function
---- @param name string The technical name of this Core extractor instance (default: "core-extractor")
+--- Quantum stabilizer factory function
+--- @param name string The technical name of this atom forge instance (default: "quantum-stabilizer")
 --- @return table A table containing the builders for entity, item, recipe, and technology
 return function(name)
-    name = name or "core-extractor"
+    name = name or "quantum-stabilizer"
 
     return {
-        EntityBuilder = CoreExtractorEntityBuilder:new({ name = name }),
-        ItemBuilder = CoreExtractorItemBuilder:new({ name = name }),
-        RecipeBuilder = CoreExtractorRecipeBuilder:new({ name = name }),
-        TechnologyBuilder = CoreExtractorTechnologyBuilder:new({ name = name })
+        EntityBuilder = QuantumStabilizerEntityBuilder:new({ name = name }),
+        ItemBuilder = QuantumStabilizerItemBuilder:new({ name = name }),
+        RecipeBuilder = QuantumStabilizerRecipeBuilder:new({ name = name }),
+        TechnologyBuilder = QuantumStabilizerTechnologyBuilder:new({ name = name })
     }
 end

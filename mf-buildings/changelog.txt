@@ -4,6 +4,7 @@ Date: 27.12.2024
   Added:
     - Core extractor
     - Fusion reactor
+    - Quantum stabilizer
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.5
 Date: 27.12.2024

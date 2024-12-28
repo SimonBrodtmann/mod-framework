@@ -255,7 +255,6 @@ local FusionReactor = FusionReactorFactory("fusion-reactor-2")
 
 FusionReactor.EntityBuilder:new()
     :allowProductivity(true)
-    :pipes()
     :apply({
         crafting_categories = table.deepcopy(data.raw["assembling-machine"]["assembling-machine-1"].crafting_categories)
     })
@@ -269,6 +268,32 @@ FusionReactor.RecipeBuilder:new()
     :apply()
 
 FusionReactor.TechnologyBuilder:new()
+    :prerequisites({ "automation-science-pack" })
+    :count(500)
+    :ingredients({ { "automation-science-pack", 1 } })
+    :time(60)
+    :apply()
+    
+-- Quantum stabilizer
+        
+local QuantumStabilizerFactory = require(MF.buildings .. "QuantumStabilizer")
+local QuantumStabilizer = QuantumStabilizerFactory()
+
+QuantumStabilizer.EntityBuilder:new()
+    :allowProductivity(true)
+    :apply({
+        crafting_categories = table.deepcopy(data.raw["assembling-machine"]["assembling-machine-1"].crafting_categories)
+    })
+
+QuantumStabilizer.ItemBuilder:new():apply()
+
+QuantumStabilizer.RecipeBuilder:new()
+    :ingredients({
+        { type = "item", name = "iron-plate", amount = 100 }
+    })
+    :apply()
+
+QuantumStabilizer.TechnologyBuilder:new()
     :prerequisites({ "automation-science-pack" })
     :count(500)
     :ingredients({ { "automation-science-pack", 1 } })
