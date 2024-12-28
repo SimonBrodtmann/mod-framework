@@ -159,6 +159,7 @@ local GravityAssemblerEntityBuilder = EntityBuilder:new({
                     production_type = "input",
                     pipe_picture = assembler2pipepictures(),
                     pipe_covers = pipecoverspictures(),
+                    secondary_draw_orders = { north = -1 },
                     volume = 1000,
                     pipe_connections = { { flow_direction = "input", direction = defines.direction.south, position = { -1, 2 } } }
                 },
@@ -166,6 +167,7 @@ local GravityAssemblerEntityBuilder = EntityBuilder:new({
                     production_type = "input",
                     pipe_picture = assembler2pipepictures(),
                     pipe_covers = pipecoverspictures(),
+                    secondary_draw_orders = { north = -1 },
                     volume = 1000,
                     pipe_connections = { { flow_direction = "input", direction = defines.direction.south, position = { 1, 2 } } }
                 },
@@ -173,6 +175,7 @@ local GravityAssemblerEntityBuilder = EntityBuilder:new({
                     production_type = "output",
                     pipe_picture = assembler2pipepictures(),
                     pipe_covers = pipecoverspictures(),
+                    secondary_draw_orders = { north = -1 },
                     volume = 100,
                     pipe_connections = { { flow_direction = "output", direction = defines.direction.north, position = { -1, -2 } } }
                 },
@@ -180,6 +183,7 @@ local GravityAssemblerEntityBuilder = EntityBuilder:new({
                     production_type = "output",
                     pipe_picture = assembler2pipepictures(),
                     pipe_covers = pipecoverspictures(),
+                    secondary_draw_orders = { north = -1 },
                     volume = 100,
                     pipe_connections = { { flow_direction = "output", direction = defines.direction.north, position = { 1, -2 } } }
                 }

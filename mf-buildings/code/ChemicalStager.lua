@@ -145,108 +145,68 @@ local ChemicalStagerEntityBuilder = EntityBuilder:new({
                     production_type = "input",
                     pipe_covers = pipecoverspictures(),
                     pipe_picture = assembler2pipepictures(),
+                    secondary_draw_orders = { north = -1 },
                     volume = 1000,
-                    pipe_connections = {
-                        {
-                            flow_direction = "input",
-                            direction = defines.direction.north,
-                            position = { -1.5, -2.5 }
-                        }
-                    }
+                    pipe_connections = { { flow_direction = "input", direction = defines.direction.north, position = { -1.5, -2.5 } } }
                 },
                 {
                     production_type = "input",
                     pipe_covers = pipecoverspictures(),
                     pipe_picture = assembler2pipepictures(),
+                    secondary_draw_orders = { north = -1 },
                     volume = 1000,
-                    pipe_connections = {
-                        {
-                            flow_direction = "input",
-                            direction = defines.direction.north,
-                            position = { 1.5, -2.5 }
-                        }
-                    }
+                    pipe_connections = { { flow_direction = "input", direction = defines.direction.north, position = { 1.5, -2.5 } } }
                 },
                 --second set
                 {
                     production_type = "input",
                     pipe_covers = pipecoverspictures(),
                     pipe_picture = assembler2pipepictures(),
+                    secondary_draw_orders = { north = -1 },
                     volume = 1000,
-                    pipe_connections = {
-                        {
-                            flow_direction = "input",
-                            direction = defines.direction.east,
-                            position = { 2.5, 1.5 }
-                        }
-                    }
+                    pipe_connections = { { flow_direction = "input", direction = defines.direction.east, position = { 2.5, 1.5 } } }
                 },
                 {
                     production_type = "input",
                     pipe_covers = pipecoverspictures(),
                     pipe_picture = assembler2pipepictures(),
+                    secondary_draw_orders = { north = -1 },
                     volume = 1000,
-                    pipe_connections = {
-                        {
-                            flow_direction = "input",
-                            direction = defines.direction.east,
-                            position = { 2.5, -1.5 }
-                        }
-                    }
+                    pipe_connections = { { flow_direction = "input", direction = defines.direction.east, position = { 2.5, -1.5 } } }
                 },
                 -- third set
                 {
                     production_type = "output",
                     pipe_covers = pipecoverspictures(),
                     pipe_picture = assembler2pipepictures(),
+                    secondary_draw_orders = { north = -1 },
                     volume = 500,
-                    pipe_connections = {
-                        {
-                            flow_direction = "output",
-                            direction = defines.direction.south,
-                            position = { -1.5, 2.5 }
-                        }
-                    }
+                    pipe_connections = { { flow_direction = "output", direction = defines.direction.south, position = { -1.5, 2.5 } } }
                 },
                 {
                     production_type = "output",
                     pipe_covers = pipecoverspictures(),
                     pipe_picture = assembler2pipepictures(),
+                    secondary_draw_orders = { north = -1 },
                     volume = 500,
-                    pipe_connections = {
-                        {
-                            flow_direction = "output",
-                            direction = defines.direction.south,
-                            position = { 1.5, 2.5 }
-                        }
-                    }
+                    pipe_connections = { { flow_direction = "output", direction = defines.direction.south, position = { 1.5, 2.5 } } }
                 },
                 -- fourth set
                 {
                     production_type = "output",
                     pipe_covers = pipecoverspictures(),
                     pipe_picture = assembler2pipepictures(),
+                    secondary_draw_orders = { north = -1 },
                     volume = 500,
-                    pipe_connections = {
-                        {
-                            flow_direction = "output",
-                            direction = defines.direction.west,
-                            position = { -2.5, -1.5 }
-                        }
-                    }
+                    pipe_connections = { { flow_direction = "output", direction = defines.direction.west, position = { -2.5, -1.5 } } }
                 },
                 {
                     production_type = "output",
                     pipe_covers = pipecoverspictures(),
                     pipe_picture = assembler2pipepictures(),
+                    secondary_draw_orders = { north = -1 },
                     volume = 500,
-                    pipe_connections = {
-                        {
-                            flow_direction = "output",
-                            direction = defines.direction.west,
-                            position = { -2.5, 1.5 }
-                        }
-                    }
+                    pipe_connections = { { flow_direction = "output", direction = defines.direction.west, position = { -2.5, 1.5 } } }
                 }
             }
         end
