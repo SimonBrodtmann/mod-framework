@@ -247,3 +247,30 @@ CoreExtractor.TechnologyBuilder:new()
     :ingredients({ { "automation-science-pack", 1 } })
     :time(60)
     :apply()
+    
+-- Fusion reactor
+    
+local FusionReactorFactory = require(MF.buildings .. "FusionReactor")
+local FusionReactor = FusionReactorFactory("fusion-reactor-2")
+
+FusionReactor.EntityBuilder:new()
+    :allowProductivity(true)
+    :pipes()
+    :apply({
+        crafting_categories = table.deepcopy(data.raw["assembling-machine"]["assembling-machine-1"].crafting_categories)
+    })
+
+FusionReactor.ItemBuilder:new():apply()
+
+FusionReactor.RecipeBuilder:new()
+    :ingredients({
+        { type = "item", name = "iron-plate", amount = 100 }
+    })
+    :apply()
+
+FusionReactor.TechnologyBuilder:new()
+    :prerequisites({ "automation-science-pack" })
+    :count(500)
+    :ingredients({ { "automation-science-pack", 1 } })
+    :time(60)
+    :apply()
