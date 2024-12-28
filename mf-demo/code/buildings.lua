@@ -225,3 +225,25 @@ PathogenLab.TechnologyBuilder:new()
     :ingredients({ { "automation-science-pack", 1 } })
     :time(60)
     :apply()
+    
+-- Core extractor
+    
+local CoreExtractorFactory = require(MF.buildings .. "CoreExtractor")
+local CoreExtractor = CoreExtractorFactory()
+
+CoreExtractor.EntityBuilder:new():apply()
+
+CoreExtractor.ItemBuilder:new():apply()
+
+CoreExtractor.RecipeBuilder:new()
+    :ingredients({
+        { type = "item", name = "iron-plate", amount = 100 }
+    })
+    :apply()
+
+CoreExtractor.TechnologyBuilder:new()
+    :prerequisites({ "automation-science-pack" })
+    :count(500)
+    :ingredients({ { "automation-science-pack", 1 } })
+    :time(60)
+    :apply()

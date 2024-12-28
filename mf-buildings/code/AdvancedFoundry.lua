@@ -42,7 +42,7 @@ local AdvancedFoundryEntityBuilder = EntityBuilder:new({
     _pipes = false,
 
     --- Enables pipes
-    --- @return ChemicalStagerEntityBuilder
+    --- @return AdvancedFoundryEntityBuilder
     pipes = function(self)
         self._pipes = true
         return self
