@@ -1,0 +1,22 @@
+---------------------------------------------------------------------------------------------------
+Version: 1.0.2
+Date: 28.12.2024
+  Added:
+    - Core extractor
+    - Fusion reactor
+    - Quantum stabilizer
+---------------------------------------------------------------------------------------------------
+Version: 1.0.1
+Date: 27.12.2024
+  Added:
+    - Chemical stager
+    - Pathogen lab
+    - Gravity assembler
+    - Arc furnace
+---------------------------------------------------------------------------------------------------
+Version: 1.0.0
+Date: 22.12.2024
+  Added:
+    - Advanced foundry
+    - Atom forge
+    - Lumber mill
