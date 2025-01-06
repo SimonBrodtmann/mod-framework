@@ -18,6 +18,7 @@ local TechnologyBuilder = Builder:new({
 --- Constructor.
 --- If a name is provided, the technology will unlock the recipe with the same name.
 function TechnologyBuilder:new(o)
+    self = table.deepcopy(self)
     o = o or {}
     if o.name and o._effects == nil then
         o._effects = {
