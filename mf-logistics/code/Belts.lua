@@ -472,9 +472,9 @@ local BeltEntityBuilder = Builder:new({
 --- @class BeltItemBuilder : ItemBuilder
 local BeltItemBuilder = ItemBuilder:new({
     _weight = {
-        transportBelt = 20 * kg,
-        undergroundBelt = 40 * kg,
-        splitter = 40 * kg
+        transportBelt = 10 * kg,
+        undergroundBelt = 20 * kg,
+        splitter = 20 * kg
     },
 
     --- Sets the weight of the item calculated from given count per rocket.
