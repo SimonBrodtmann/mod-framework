@@ -5,6 +5,7 @@ local Builder = {}
 
 function Builder:new(o)
     o = o or {}
+    o = table.deepcopy(o)
     setmetatable(o, self)
     self.__index = self
     return o

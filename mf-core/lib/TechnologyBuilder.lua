@@ -20,6 +20,7 @@ local TechnologyBuilder = Builder:new({
 function TechnologyBuilder:new(o)
     self = table.deepcopy(self)
     o = o or {}
+    o = table.deepcopy(o)
     if o.name and o._effects == nil then
         o._effects = {
             {
